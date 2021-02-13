@@ -25,3 +25,27 @@ class Vector:
                 v=self.__dict__[k])
                 for k in sorted(self.__dict__.keys())))
 
+
+class ColoredVector(Vector):
+
+    COLOR_INDEXES = ('red', 'green', 'blue')
+
+    def __init__(self, red, green, blue, **coords):
+        super().__init__(**coords)
+        self.__dict__['color'] = [red, green, blue]
+    
+    def __getattr__(self, name):
+        try:
+            channel = ColoredVector.COLOR_INDEXES.index(name)
+        except ValueError:
+            return super().__getattr__(name)
+        else:
+            return self.__dict__['color'][channel]
+    
+    def __setattr__(self, name, value):
+        try:
+            channel = ColoredVector.COLOR_INDEXES.index(name)
+        except ValueError:
+            super().__setattr__(name, value)
+        else:
+            self.__dict__['color'][channel] = value
