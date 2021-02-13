@@ -14,6 +14,9 @@ class Vector:
     def __setattr__(self, name, value):
         raise AttributeError("Can't set an attribute {!r}".format(name))
 
+    def __delattr__(self, name):
+        raise AttributeError("Can't delete attribute {!r}".format(name))
+
     def __repr__(self):
         return "{}({})".format(
             self.__class__.__name__,
