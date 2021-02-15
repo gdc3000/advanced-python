@@ -4,7 +4,7 @@ from weakref import WeakKeyDictionary
 class Positive:
 	
 	def __init__(self):
-		self._instance_data = Weak
+		self._instance_data = WeakKeyDictionary()
 	
 	#Descriptor protocol section
 	def __get__(self, instance, owner):
@@ -37,7 +37,7 @@ class Planet:
     def name(self):
         return self._name
 
-    @property.setter
+    @name.setter
     def name(self, value):
         if not value:
             raise ValueError("Cannot set empty Planet.name")
