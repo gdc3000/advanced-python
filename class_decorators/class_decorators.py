@@ -50,3 +50,25 @@ class Temperature:
 
     def __init__(self, kelvin):
         self._kelvin = kelvin
+
+    def get_kelvin(self):
+        return self._kelvin
+
+    def set_kelvin(self, value):
+        self._kelvin = value
+
+    @property
+    def celsius(self):
+        return self._kelvin - 273.15
+
+    @celsius.setter
+    def celsius(self, value):
+        self._kelvin = value + 273.15
+
+    @property
+    def fahrenheit(self):
+        return self._kelvin * 9/5 - 459.67
+
+    @fahrenheit.setter
+    def fahrenheit(self, value):
+        self._kelvin = (value + 459.67) * 5/9
