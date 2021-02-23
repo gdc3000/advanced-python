@@ -87,8 +87,14 @@ class InvariantCheckingPropertyProxy:
 def not_below_absolute_zero(temperature):
     """Temperature not below absolute zero"""
     return temperature._kelvin >= 0
-    
 
+
+def below_absolute_hot(temperature):
+    """Temperature below absolute hot"""
+    return temperature._kelvin <= 1.416785e32
+
+
+@invariant(below_absolute_hot)
 @invariant(not_below_absolute_zero)
 class Temperature:
 
