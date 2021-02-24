@@ -11,7 +11,10 @@ class SwordMeta(type):
 
 #Sword plays role of virtual base class
 class Sword(metaclass=SwordMeta):
-    pass
+    
+    def thrust(self):
+        print("Thrusting..")
+
 
 class BroadSword:
 
