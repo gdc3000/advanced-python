@@ -16,9 +16,10 @@ class Sword(metaclass=ABCMeta):
 
     @classmethod
     def __subclasshook__(cls, sub):
-        return (hasattr(sub, 'swipe') and callable(sub.swipe)
+        return ((hasattr(sub, 'swipe') and callable(sub.swipe)
                 and
                 hasattr(sub, 'sharpen') and callable(sub.sharpen))
+                or NotImplemented)
     
     def thrust(self):
         print("Thrusting..")
@@ -31,6 +32,13 @@ class BroadSword:
 
     def sharpen(self):
         print("Shrink!")
+
+
+@Sword.register
+class LightSaber:
+
+    def swipe(self):
+        print("Ffffffffkrshhzwooom...woom")
 
 
 class SamuraiSword:
