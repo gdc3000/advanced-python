@@ -1,3 +1,5 @@
+from abc import ABCMeta
+
 class SwordMeta(type):
 
     def __instancecheck__(cls, instance):
@@ -10,7 +12,13 @@ class SwordMeta(type):
 
 
 #Sword plays role of virtual base class
-class Sword(metaclass=SwordMeta):
+class Sword(metaclass=ABCMeta):
+
+    @classmethod
+    def __subclasshook__(cls, sub):
+        return (hasattr(sub, 'swipe') and callable(sub.swipe)
+                and
+                hasattr(sub, 'sharpen') and callable(sub.sharpen))
     
     def thrust(self):
         print("Thrusting..")
